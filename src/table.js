@@ -2,7 +2,7 @@ import React from "react";
 import { useTable } from "react-table";
 
 export default function Table({ columns, data }) {
-  // Use the useTable Hook to send the columns and data to build the table
+  // Tworzenie tabelki do wyeksportowania do App
   const {
     getTableProps, 
     getTableBodyProps,
@@ -40,3 +40,5 @@ export default function Table({ columns, data }) {
     </table>
   );
 }
+
+export default Table

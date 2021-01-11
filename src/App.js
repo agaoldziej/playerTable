@@ -1,18 +1,17 @@
 
 import React, { useMemo, useState, useEffect } from "react";
-import Table from "./Table";
+import Table from "./table";
+import userListLoop from "./players"
 
   function App() {
     const columns = useMemo(
       () => [
         {
-          // first group - TV Show
           Header: "Score table",
-          // First group columns
           columns: [
             {
               Header: "Name",
-              accessor: "show.name"
+              accessor: "show.user"
             },
             {
               Header: "Score",
@@ -24,12 +23,19 @@ import Table from "./Table";
       ],
       []
     );
-  
-    return (
+
+      return (
       <div className="App">
-        <Table columns={columns} data={data} />
+        Hello user
       </div>
     );
   }
   
-  export default App;
+  //   return (
+  //     <div className="App">
+  //       <userTableLoop columns={columns} data={data} />
+  //     </div>
+  //   );
+  // }
+  
+  ReactDOM.render((<App />), document.getElementById("root"));
