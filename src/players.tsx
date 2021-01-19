@@ -1,30 +1,12 @@
-import React, { Component } from "react";
-
-//   const userListLoop = () => (
-//     <ul>
-//       {userList.map(item => (
-//         <li key={item.user}>
-//           <div>{item.user}</div>
-//           <div>{item.score}</div>
-//         </li>
-//       ))}
-//     </ul>
-//   );
-
-
-
-  
-
-//   export default userListLoop
-
+import React, { Component, Fragment } from "react";
 
 class Table extends Component {
-   state: { //state is by default an object
+   state: { 
      userList: { id: number; user: string; score: number; }[];
    };
    constructor(props:any) {
-      super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
-      this.state = { //state is by default an object
+      super(props) 
+      this.state = { 
          userList: [
             {
               id: 1,
@@ -81,15 +63,31 @@ class Table extends Component {
       }
    }
 
-   render() { //Whenever our class runs, render method will be called automatically, it may have already defined in the constructor behind the scene.
+   render() { 
       return (
-         <div>
-            <h1>React Dynamic Table</h1>
-         </div>
+         <Fragment>
+           {this.state.userList.map((player, index) => <tr key={index}>
+             <td>{player.id}
+             </td>
+             <td>{player.user}
+             </td>
+             <td>{player.score}
+             </td>
+             </tr>)}
+           
+         </Fragment>
       )
    }
 };
 
+
+// function pushPlayer () {
+
+// }
+
+// button.addEventListener ("click", function() {
+//   alert("Added player to the list");
+// });
 
 
 export default Table

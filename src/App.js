@@ -1,7 +1,8 @@
 
-import React, { useMemo, useState, useEffect } from "react";
-import Table from "./table";
-//import Table from "./players"
+import React, { useMemo } from "react";
+import Table from "./players";
+import userButtons from "./button";
+
 
   function App() {
     const columns = useMemo(
@@ -26,53 +27,30 @@ import Table from "./table";
 
     return (
       <div className="App">
-        <Table columns={item.user} data={item.score} />
+          <table id='userList'>
+             <thead>
+                <tr>
+                   <th>
+                      Id
+                   </th>
+                   <th>
+                      User Name
+                   </th>
+                   <th>
+                      Score
+                   </th>
+                </tr>
+             </thead>
+           <tbody>
+               <Table  />
+            </tbody>
+        </table>
+        {userButtons}
       </div>
     );
   }
 
-// renderTableData() ; {
-//   return this.state.userList.map((userList, index) => {
-//      const { id, user, score } = userList //destructuring
-//      return (
-//         <tr key={id}>
-//            <td>{id}</td>
-//            <td>{user}</td>
-//            <td>{score}</td>
-           
-//         </tr>
-//      )
-//   })
-// }
-
-// render(Table) ;{
-//   return (
-//      <div>
-//         <h1 id='title'>React Dynamic Table</h1>
-//         <table id='userList'>
-//            <tbody>
-//               {this.renderTableData()}
-//            </tbody>
-//         </table>
-//      </div>
-//   )
-// };
-
 export default App
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -93,3 +71,6 @@ export default App
   //     console.log("Change color to blue!");
   //     this.removeEventListener("click", handleClick);
   // }
+  // const randoms = [...Array(1)].map(() => Math.floor(Math.random() * 200));
+
+// document.body.innerText = randoms;
