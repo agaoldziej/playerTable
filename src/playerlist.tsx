@@ -61,7 +61,6 @@ export default class Table extends Component {
                   score: 111,
               }
           ]
-           
       }
    }
 
