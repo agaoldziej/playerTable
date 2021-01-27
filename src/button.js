@@ -15,6 +15,10 @@ const theme = {
   blue: {
     default: '#3f51b5',
     hover: '#283593'
+  },
+  yellow: {
+    default: '#f1f73b',
+    hover: '#f7ff00'
   }
 
 }
@@ -33,32 +37,41 @@ const Button = styled.button `
 
 Button.defaultProps = {
   theme: 'beige'
-};
-
-function addPlayer() {
-  alert('Player added');
 }
-export default function userButtons() {
+
+// function addPlayer() {
+//   alert('Player added');
+// }
+
+function changeColor() {
+  alert('Color changed');
+}
+function userRemoved() {
+  alert('User removed');
+}
+
+export default function UserButtons() {
   return(
     <>
-      <div>
+      {/* <div>
           <Button onClick={addPlayer}>
               Add Player
           </Button>
-      </div>
+      
+      </div> */}
       <div>
-      <Button theme="pink" onClick={addPlayer}>
+      <Button theme="pink" onClick={changeColor}>
           Change highlight to red
       </Button>
   </div>
   <div>
-      <Button theme="blue" onClick={addPlayer}>
+      <Button theme="blue" onClick={changeColor}>
           Change highlight to blue
       </Button>
   </div>
   <div>
-      <Button onClick={addPlayer}>
-          Remove last player
+      <Button theme="yellow" onClick={userRemoved}>
+          Remove last user
       </Button>
   </div>
   </>

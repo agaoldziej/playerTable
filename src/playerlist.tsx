@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 
-class Table extends Component {
+
+
+export default class Table extends Component {
    state: { 
      userList: { id: number; user: string; score: number; }[];
    };
@@ -66,6 +68,22 @@ class Table extends Component {
    render() { 
       return (
          <Fragment>
+            <table id='userList'>
+             <thead>
+                <tr>
+                   <th>
+                      Id
+                   </th>
+                   <th>
+                      User Name
+                   </th>
+                   <th>
+                      Score
+                   </th>
+                </tr>
+             </thead>
+           <tbody>
+            
            {this.state.userList.map((player, index) => <tr key={index}>
              <td>{player.id}
              </td>
@@ -74,21 +92,11 @@ class Table extends Component {
              <td>{player.score}
              </td>
              </tr>)}
-           
+             </tbody>
+        </table>
          </Fragment>
       )
    }
 };
 
-
-// function pushPlayer () {
-
-// }
-
-// button.addEventListener ("click", function() {
-//   alert("Added player to the list");
-// });
-
-
-export default Table
 
