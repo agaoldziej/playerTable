@@ -1,8 +1,8 @@
 
-import React, {useState} from "react";
+import React from "react";
 import Table from "./playerlist";
 import UserButtons from "./button";
-import AddUserForm from "./add";
+
 
 
   function App() {
@@ -10,7 +10,6 @@ import AddUserForm from "./add";
     return (
       <div className="App">
         <Table />
-        <AddUserForm />
         <UserButtons />
       </div>
     );

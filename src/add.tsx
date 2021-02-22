@@ -1,17 +1,22 @@
 import React from "react";
-
+import {IUser} from "./interfaces";
 
 const useState = React.useState
 
-function AddUserInput(props) {
-    const [user, setUser] = useState()
-    const [score, setScore] = useState()
+function AddUserInput(props:any) {
+    const [user, setUser] = useState<string>("");
+    const [score, setScore] = useState<string>("");
   
-  function handleUserSubmit(e) {
-    e.preventDefault()
-    props.this.state(prev => prev.concat({user, score, id: Date.now()}))
-    setUser("")
-    setScore("")
+  function handleUserSubmit(e:any) {
+    e.preventDefault();
+    debugger
+    const newUser= {
+      user: user, 
+      score: parseInt(score)
+    } as IUser;
+    props.addUser(newUser);
+    setUser("");
+    setScore("");
   }
     return (
       <form onSubmit={handleUserSubmit}>

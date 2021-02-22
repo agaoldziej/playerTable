@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "../../INTERN/o/src/whole.js"  ]
 }

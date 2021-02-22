@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+// import onRemoveUser from './playerlist'
 
 
 const theme = {
@@ -18,7 +19,7 @@ const theme = {
   },
   yellow: {
     default: '#f1f73b',
-    hover: '#f7ff00'
+    hover: '#f7ff19'
   }
 
 }
@@ -39,26 +40,19 @@ Button.defaultProps = {
   theme: 'beige'
 }
 
-// function addPlayer() {
-//   alert('Player added');
-// }
+
 
 function changeColor() {
   alert('Color changed');
 }
-function userRemoved() {
-  alert('User removed');
-}
+// function userRemoved() {
+//   alert('User removed');
+// }
 
 export default function UserButtons() {
   return(
     <>
-      {/* <div>
-          <Button onClick={addPlayer}>
-              Add Player
-          </Button>
-      
-      </div> */}
+    
       <div>
       <Button theme="pink" onClick={changeColor}>
           Change highlight to red
@@ -69,11 +63,7 @@ export default function UserButtons() {
           Change highlight to blue
       </Button>
   </div>
-  <div>
-      <Button theme="yellow" onClick={userRemoved}>
-          Remove last user
-      </Button>
-  </div>
+ 
   </>
   );
 }
