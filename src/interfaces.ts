@@ -1,1 +1,1 @@
-export interface IUser { id?: number; user: string; score: number;}
+export interface IUser { id: number; user: string; score: number;}

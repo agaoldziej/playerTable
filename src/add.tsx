@@ -4,17 +4,17 @@ import {IUser} from "./interfaces";
 const useState = React.useState
 
 function AddUserInput(props:any) {
-    const [user, setUser] = useState<string>("");
-    const [score, setScore] = useState<string>("");
-  
-  function handleUserSubmit(e:any) {
+  const [user, setUser] = useState<string>("");
+  const [score, setScore] = useState<string>("");
+
+  const handleUserSubmit = (e:any) => {
     e.preventDefault();
-    debugger
     const newUser= {
+      id: props.lastindex +1,
       user: user, 
       score: parseInt(score)
     } as IUser;
-    props.addUser(newUser);
+    props.handleAdd(newUser);
     setUser("");
     setScore("");
   }
@@ -31,5 +31,4 @@ function AddUserInput(props:any) {
   }
 
   export default AddUserInput
-
 

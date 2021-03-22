@@ -1,127 +1,95 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment ,useState } from "react";
 import AddUserInput from "./add";
 import {IUser} from "./interfaces";
+import {players} from "./players";
 import "./index.css";
+import ToggleHighlight from "./toggle";
 
+export default function PlayerTable() {
 
+   const [usersList, setUsersList] = useState<IUser[]>(players);
+   const [isHighlightedRed, setIsHighlightedRed] = useState<boolean>(false);
+   const [isHighlightedBlue, setIsHighlightedBlue] = useState<boolean>(false);
 
-export default class Table extends Component {
-   state: { 
-     userList: IUser[];
-    
-   };
-   constructor(props:any) {
-      super(props) 
-      this.state = { 
-         userList: [
-            {
-              id: 1,
-              user: 'Adam',
-              score: 11
-            },
-            {
-                id: 2,
-                user: 'Bob',
-                score: 22
-            },
-            {
-                id: 3,
-                user: 'Czarek',
-                score: 33
-              },
-              {
-                  id: 4,
-                  user: 'Daniel',
-                  score: 44
-              },
-              {
-                id: 5,
-                user: 'Ewa',
-                score: 55
-              },
-              {
-                  id: 6,
-                  user: 'Filip',
-                  score: 66
-              },
-              {
-                id: 7,
-                user: 'Gosia',
-                score: 77
-              },
-              {
-                  id: 8,
-                  user: 'Henryk',
-                  score: 88
-              },
-              {
-                id: 9,
-                user: 'Iza',
-                score: 99
-              },
-              {
-                  id: 10,
-                  user: 'Jan',
-                  score: 111
-              }
-          ]
-      } 
+   const handleRemove = (id: number) => {
+      const newUserList = usersList.filter((player:IUser) => player.id !== id);
+      setUsersList(newUserList);
    }
-
-
-
- addNewUser = (user: IUser) => {
-   this.setState((prevState:any) => ({
-      userList:[...prevState.userList, {id: prevState.userList[prevState.userList.length-1].id + 1, ...user}] 
-    }));
-};
-
-
-handleRemove(id: any) {
-    const newUserList = this.state.userList.filter(player => player.id !== id);
-    this.setState({userList: newUserList});
-    }
   
-
-   render() { 
-      return (
-         <Fragment>
-            <table id='userList'>
-             <thead>
-                <tr>
-                   <th>
-                      Id
-                   </th>
-                   <th>
-                      User Name
-                   </th>
-                   <th>
-                      Score
-                   </th>
-                   <th>
-                      Delete
-                   </th>
-                </tr>
-             </thead>
-           <tbody>
-            
-           {this.state.userList.map((player, index) => <tr key={index} className={player.score > 100 ? "highlight" : ""}>
-             <td>{player.id}
-             </td>
-             <td>{player.user}
-             </td>
-             <td>{player.score}
-             </td>
-             <td>
-                <button onClick={() => this.handleRemove(player.id)}>Delete</button>
-             </td>
-             </tr>)}
-             </tbody>
-        </table>
-        <AddUserInput addUser={(user: IUser) => this.addNewUser(user)}/>
-
-         </Fragment>
-      )
+   const handleAdd = (user: IUser) => {
+      const newUserList = [...usersList, user];
+      setUsersList(newUserList);
    }
-};
+ 
+   const getHighlight = (score: number) => {
+      let classname = ''
+      if (score > 100) {
+         
+         if (isHighlightedRed) {
+            classname = 'highlightRed'
+         }
+         if (isHighlightedBlue) {
+            classname = 'highlightBlue'
+         }
+     }
+         return classname;
+      }
+   const handleRemoveHighlight = () => {
+      setIsHighlightedRed(false)
+      setIsHighlightedBlue(false)
+   }
+   const setRed = (change: boolean) => {
+      if (isHighlightedBlue) {
+         setIsHighlightedBlue(false)
+      }
+      setIsHighlightedRed(change)
+   }
+
+   const setBlue = (change: boolean) => {
+      if (isHighlightedRed) {
+         setIsHighlightedRed(false)
+      }
+      setIsHighlightedBlue(change)
+   }
+
+   return (
+      <Fragment>
+         <table id='userList'>
+            <thead>
+               <tr>
+                  <th>
+                     Id
+                  </th>
+                  <th>
+                     User Name
+                  </th>
+                  <th>
+                     Score
+                  </th>
+                  <th>
+                     Delete
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+                  {usersList.map((player, index) => <tr key={index} className={getHighlight(player.score)}>
+                  <td>{player.id}
+                  </td>
+                  <td>{player.user}
+                  </td>
+                  <td>{player.score}
+                  </td>
+                  <td>
+                  <button onClick={() => handleRemove(player.id)}>Delete</button>
+                  </td>
+               </tr>)}
+            </tbody>
+         </table>
+         <AddUserInput handleAdd={handleAdd} lastindex={usersList.length} />
+         <ToggleHighlight setIsHighlighted={setRed}/>
+         <ToggleHighlight setIsHighlighted={setBlue}/>
+         <button onClick={() => handleRemoveHighlight()}>Remove Highlight</button>
+      </Fragment>
+   )
+}
 

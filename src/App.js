@@ -1,19 +1,14 @@
 
 import React from "react";
-import Table from "./playerlist";
-import UserButtons from "./button";
+import PlayerTable from "./playerlist";
 
-
-
-  function App() {
-     
-    return (
-      <div className="App">
-        <Table />
-        <UserButtons />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <PlayerTable />
+    </div>
+  );
+}
 
 export default App
 

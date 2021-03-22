@@ -1,3 +1,7 @@
-.highlight {
+.highlightRed {
     background-color: red;
+}
+
+.highlightBlue {
+    background-color: blue;
 }
